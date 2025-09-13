@@ -10,7 +10,7 @@ import numpy as np
 # Config & Class Names
 # =========================
 CLASS_NAMES = ["Abnormal", "Normal", "STE"]
-MODEL_PATH = "best_model.pth"
+MODEL_PATH = "final_model.pth"
 DEVICE = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
 # =========================
