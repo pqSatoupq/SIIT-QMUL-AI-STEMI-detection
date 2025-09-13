@@ -16,9 +16,18 @@ DEVICE = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 # =========================
 # Load Model
 # =========================
-@st.cache_resource  # Cache model to avoid reloading on every interaction
 def load_model():
-    model = torch.load(MODEL_PATH, map_location=DEVICE)
+    # 1. Define your model architecture (same as when you trained it!)
+    # Example: ResNet18
+    from torchvision import models
+    model = models.resnet18(weights=None)
+    model.fc = nn.Linear(model.fc.in_features, len(CLASS_NAMES))  # Adjust final layer
+
+    # 2. Load weights
+    state_dict = torch.load(MODEL_PATH, map_location=DEVICE)
+    model.load_state_dict(state_dict)
+
+    model.to(DEVICE)
     model.eval()
     return model
 
