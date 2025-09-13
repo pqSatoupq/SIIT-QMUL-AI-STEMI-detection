@@ -18,9 +18,9 @@ DEVICE = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 # =========================
 def load_model():
     # 1. Define your model architecture (same as when you trained it!)
-    # Example: ResNet18
+    # Example: ResNet50
     from torchvision import models
-    model = models.resnet18(weights=None)
+    model = models.resnet50(weights=None)
     model.fc = nn.Linear(model.fc.in_features, len(CLASS_NAMES))  # Adjust final layer
 
     # 2. Load weights
